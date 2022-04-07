@@ -9,6 +9,14 @@ import jwt
 from datetime import datetime, timedelta
 from functools import wraps
 
+
+from uuid import uuid4
+from datetime import datetime
+import json
+import boto3
+import os
+
+
 # creates Flask object
 app = Flask(__name__)
 
@@ -73,6 +81,7 @@ def token_required(f):
 @app.route('/user', methods =['GET'])
 @token_required
 def get_all_users(current_user):
+
 	# querying the database
 	# for all the entries in it
 	users = User.query.all()
@@ -166,6 +175,127 @@ def signup():
 	else:
 		# returns 202 if user already exists
 		return make_response('User already exists. Please Log in.', 202)
+
+
+# create file route
+@app.route('/create_file', methods=['POST'])
+@token_required
+def create_file(current_user):
+
+	data = {}
+
+	post_data = request.form
+	body = post_data.get('body')
+
+	data['uuid'] = str(uuid4())
+	data['created_by'] = current_user.name
+	data['created_time'] = str(datetime.now())
+	data['modified_by'] = current_user.name
+	data['modified_time'] = str(datetime.now())
+	data['body'] = str(body)
+
+	file_data = json.dumps(data, indent = 4)
+	file_name = str(uuid4()) + '.json'
+
+	# create file and write data to it
+	with open(file_name, 'w') as f:
+		f.write(file_data)
+
+	s3_client = boto3.client("s3", endpoint_url="http://0.0.0.0:4566", aws_access_key_id="temp", aws_secret_access_key="temp")
+
+	# upload file to s3
+	s3_client.upload_file(file_name, "localbucket", file_name)
+
+	# delete file
+	os.remove(file_name)
+
+	return jsonify(data)
+
+
+# get file route
+@app.route('/get_file', methods=['GET'])
+@token_required
+def get_file(current_user):
+	
+	data = {}
+
+	post_data = request.form
+	file_name = post_data.get('file_name')
+
+	s3_client = boto3.client("s3", endpoint_url="http://0.0.0.0:4566", aws_access_key_id="temp", aws_secret_access_key="temp")
+
+	# download file from s3
+	s3_client.download_file("localbucket", file_name, file_name)
+
+	# read file
+	with open(file_name, 'r') as f:
+		data = json.load(f)
+	
+	# delete file
+	os.remove(file_name)
+
+	return jsonify(data)
+
+
+# update file route
+@app.route('/update_file', methods=['POST'])	
+@token_required
+def update_file(current_user):
+	
+	data = {}
+
+	post_data = request.form
+	file_name = post_data.get('file_name')
+	body = post_data.get('body')
+
+	s3_client = boto3.client("s3", endpoint_url="http://0.0.0.0:4566", aws_access_key_id="temp", aws_secret_access_key="temp")
+
+	# download file from s3
+	s3_client.download_file("localbucket", file_name, file_name)
+
+	# read file
+	with open(file_name, 'r') as f:
+		data = json.load(f)
+	
+	# update file
+	data['body'] = str(body)
+	data['modified_by'] = current_user.name
+	data['modified_time'] = str(datetime.now())
+
+	# write file
+	with open(file_name, 'w') as f:
+		f.write(json.dumps(data, indent = 4))
+
+	# upload file to s3
+	s3_client.upload_file(file_name, "localbucket", file_name)
+
+	# delete file
+	os.remove(file_name)
+
+	return jsonify(data)
+
+
+# delete file route
+@app.route('/delete_file', methods=['POST'])
+@token_required
+def delete_file(current_user):
+	
+	data = {}
+
+	post_data = request.form
+	file_name = post_data.get('file_name')
+
+	s3_client = boto3.client("s3", endpoint_url="http://0.0.0.0:4566", aws_access_key_id="temp", aws_secret_access_key="temp")
+
+	# download file from s3
+	s3_client.download_file("localbucket", file_name, file_name)
+
+	# delete file
+	os.remove(file_name)
+
+	return jsonify(data)
+
+
 
 if __name__ == "__main__":
 	# setting debug to True enables hot reload
