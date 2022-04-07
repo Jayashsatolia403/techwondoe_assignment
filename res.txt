@@ -1,0 +1,33 @@
+Registration Successful.
+{'token': 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJwdWJsaWNfaWQiOiJiODdmNzE4Zi1lNWQ5LTQyMzMtODUzYS1lNzhjZmNiMDc2YmMiLCJleHAiOjc2NDkzNDMxOTh9.qHERUEOtNzqgYSmmbtOOzrMAsXUqf_fQfmNdeWSZ3OQ'}
+{'body': 'test', 'created_by': 'test', 'created_time': '2022-04-07 14:53:18.354466', 'modified_by': 'test', 'modified_time': '2022-04-07 14:53:18.354485', 'uuid': '09021a0c-4287-47af-977c-710a2c9bb49a'}
+
+
+
+
+\n
+
+
+
+
+
+\ >>>>>>>>>>>>>>  09021a0c-4287-47af-977c-710a2c9bb49a.json
+{
+  "body": "test",
+  "created_by": "test",
+  "created_time": "2022-04-07 14:53:18.354466",
+  "modified_by": "test",
+  "modified_time": "2022-04-07 14:53:18.354485",
+  "uuid": "09021a0c-4287-47af-977c-710a2c9bb49a"
+}
+
+{
+  "body": "Updated Test",
+  "created_by": "test",
+  "created_time": "2022-04-07 14:53:18.354466",
+  "modified_by": "test",
+  "modified_time": "2022-04-07 14:53:18.492991",
+  "uuid": "09021a0c-4287-47af-977c-710a2c9bb49a"
+}
+
+{}
