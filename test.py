@@ -42,10 +42,12 @@ headers = {'x-access-token' : token}
 
 
 res_create = r.post(create_url, data=create_data, headers=headers)
-print(res_create.json())
+print(res_create.text)
 
 
-file_name = res_create.json()['uuid']
+file_name = res_create.json()['uuid']+'.json'
+
+print(" \n\n\n\n\\n\n\n\n\n\n\n\ >>>>>>>>>>>>>> ", file_name)
 
 
 get_data = {
@@ -64,8 +66,8 @@ delete_data = {
 
 
 
-# res_get = r.get(get_url, data=get_data, headers=headers)
-# print(res_get.text)
+res_get = r.post(get_url, data=get_data, headers=headers)
+print(res_get.text)
 
 
 res_update = r.post(update_url, data=update_data, headers=headers)

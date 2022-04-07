@@ -195,7 +195,7 @@ def create_file(current_user):
 	data['body'] = str(body)
 
 	file_data = json.dumps(data, indent = 4)
-	file_name = str(uuid4()) + '.json'
+	file_name = str(data['uuid']) + '.json'
 
 	# create file and write data to it
 	with open(file_name, 'w') as f:
@@ -213,7 +213,7 @@ def create_file(current_user):
 
 
 # get file route
-@app.route('/get_file', methods=['GET'])
+@app.route('/get_file', methods=['POST'])
 @token_required
 def get_file(current_user):
 	
