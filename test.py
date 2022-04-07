@@ -30,7 +30,7 @@ create_data = {
 
 
 res_signup = r.post(signup_url, data=signup_data)
-print(res_signup.json())
+print(res_signup.text)
 
 
 res_login = r.post(login_url, data=login_data)
