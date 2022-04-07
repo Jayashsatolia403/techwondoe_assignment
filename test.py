@@ -45,7 +45,7 @@ res_create = r.post(create_url, data=create_data, headers=headers)
 print(res_create.json())
 
 
-file_name = res_create.json()['file_name']
+file_name = res_create.json()['uuid']
 
 
 get_data = {
