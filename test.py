@@ -64,8 +64,8 @@ delete_data = {
 
 
 
-res_get = r.get(get_url, data=get_data, headers=headers)
-print(res_get.text)
+# res_get = r.get(get_url, data=get_data, headers=headers)
+# print(res_get.text)
 
 
 res_update = r.post(update_url, data=update_data, headers=headers)
