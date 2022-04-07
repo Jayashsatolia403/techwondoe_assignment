@@ -3,10 +3,10 @@ import requests as r
 
 signup_url = "http://localhost:5000/signup"
 login_url = "http://localhost:5000/login"
-create_url = "http://localhost:5000/create"
-get_url = "http://localhost:5000/get"
-update_url = "http://localhost:5000/update"
-delete_url = "http://localhost:5000/delete"
+create_url = "http://localhost:5000/create_file"
+get_url = "http://localhost:5000/get_file"
+update_url = "http://localhost:5000/update_file"
+delete_url = "http://localhost:5000/delete_file"
 
 
 signup_data = {
