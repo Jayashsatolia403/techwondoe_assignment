@@ -65,12 +65,12 @@ delete_data = {
 
 
 res_get = r.post(get_url, data=get_data, headers=headers)
-print(res_get.json())
+print(res_get.text)
 
 
 res_update = r.post(update_url, data=update_data, headers=headers)
-print(res_update.json())
+print(res_update.text)
 
 
 res_delete = r.post(delete_url, data=delete_data, headers=headers)
-print(res_delete.json())
+print(res_delete.text)
