@@ -30,3 +30,11 @@ How to Run the App :
 
     docker build --tag techwondoe-assignment .
     docker run -d -p 5000:5000 techwondoe-assignment
+
+Checklist : 
+
+[x] Working
+- [x] Working Too
+
+[ ] Not Working
+- [ ] Not Working too
