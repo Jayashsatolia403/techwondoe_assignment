@@ -31,6 +31,11 @@ How to Run the App :
     docker build --tag techwondoe-assignment .
     docker run -d -p 5000:5000 techwondoe-assignment
 
+How to test API using my test.py included in the project : 
+
+    python3 test.py
+
+
 Checklist : 
 
 - [x] Added jwt Authentication and Verification, Login and Signup
