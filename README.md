@@ -28,7 +28,9 @@ The assignment is to write a simple  API in Python that provides CRUD operations
 
 How to Run the App : 
 
-First run localstack on docker container to test aws s3 services locally then run the below commands to create a docker image and run that image on port 5000.
+First run localstack on docker container to test aws s3 services locally on 4566 then run the below commands to create a docker image and run that image on port 5000.
+
+Create a s3 bucket of name "localbucket".
 
     docker build --tag techwondoe-assignment .
     docker run -d -p 5000:5000 techwondoe-assignment

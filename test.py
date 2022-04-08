@@ -1,4 +1,7 @@
+from email import header
+from unittest import mock
 import requests as r
+from moto import mock_s3
 
 
 signup_url = "http://localhost:5000/signup"

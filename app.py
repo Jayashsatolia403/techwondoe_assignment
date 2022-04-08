@@ -150,7 +150,7 @@ def signup():
 		db.session.add(user)
 		db.session.commit()
 
-		return make_response('Registration Successful.', 201)
+		return jsonify({'status': 'success'})
 	else:
 		# returns 202 if user already exists
 		return make_response('User already exists. Please Log in.', 202)
@@ -196,24 +196,27 @@ def create_file(current_user):
 @token_required
 def get_file(current_user):
 	
-	data = {}
+	try:
+		data = {}
 
-	post_data = request.form
-	file_name = post_data.get('file_name')
+		post_data = request.form
+		file_name = post_data.get('file_name')
 
-	s3_client = boto3.client("s3", endpoint_url="http://0.0.0.0:4566", aws_access_key_id="temp", aws_secret_access_key="temp")
+		s3_client = boto3.client("s3", endpoint_url="http://0.0.0.0:4566", aws_access_key_id="temp", aws_secret_access_key="temp")
 
-	# download file from s3
-	s3_client.download_file("localbucket", file_name, file_name)
+		# download file from s3
+		s3_client.download_file("localbucket", file_name, file_name)
 
-	# read file
-	with open(file_name, 'r') as f:
-		data = json.load(f)
-	
-	# delete file
-	os.remove(file_name)
+		# read file
+		with open(file_name, 'r') as f:
+			data = json.load(f)
+		
+		# delete file
+		os.remove(file_name)
 
-	return jsonify(data)
+		return jsonify(data)
+	except:
+		return jsonify({'status': 'Invalid File Name or File does not exists'})
 
 
 # update file route
