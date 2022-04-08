@@ -148,3 +148,11 @@ def test_delete_file():
         assert False
     except:
         assert True
+
+    
+test_signup()
+test_login()
+test_create_file()
+test_get_file()
+test_update_file()
+test_delete_file()
