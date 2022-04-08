@@ -33,8 +33,12 @@ How to Run the App :
 
 Checklist : 
 
-[x] Working
-- [x] Working Too
-
-[ ] Not Working
-- [ ] Not Working too
+- [x] Added jwt Authentication and Verification, Login and Signup
+- [x] Create file from s3 API
+- [x] Get file from s3 API
+- [x] Update file from s3 API
+- [x] Delete file from s3 API
+- [ ] Unit tests using moto or similar library to mock AWS services
+- [ ] Lint and prettier configurations
+- [x] Dockerise the application
+- [x] Created Readme file
