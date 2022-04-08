@@ -34,7 +34,7 @@ create_data = {
 @mock_s3
 def test_signup():
     res_signup = r.post(signup_url, data=signup_data)
-    assert res_signup.status_code == 200
+    assert int(res_signup.status_code) == 200
     assert res_signup.json()["status"] == "success"
 
 
@@ -42,8 +42,9 @@ def test_signup():
 @mock_s3
 def test_login():
     r.post(signup_url, data=signup_data)
-    assert r.post(login_url, data=login_data).status_code == 200
-    assert r.post(login_url, data=login_data).json()["token"] != None
+    res_login = r.post(login_url, data=login_data)
+    assert res_login.status_code == 201
+    assert res_login.json()["token"] != None
 
 
 @mock_s3
