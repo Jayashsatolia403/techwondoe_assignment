@@ -35,9 +35,16 @@ Create a s3 bucket of name "localbucket".
     docker build --tag techwondoe-assignment .
     docker run -d -p 5000:5000 techwondoe-assignment
 
+How to test API using moto_test.py file in the project : 
+
+you can run the file using command : 
+
+    python3 moto_test.py
+
+to check if it gives any error. If you are willing to test individual service you can run the functions specific to that service only.
 
 
-How to test API using my test.py included in the project : 
+How to test API using my general_tests/test.py included in the project : 
 
     python3 test.py
 
@@ -49,7 +56,7 @@ Checklist :
 - [x] Get file from s3 API
 - [x] Update file from s3 API
 - [x] Delete file from s3 API
-- [ ] Unit tests using moto or similar library to mock AWS services
+- [x] Unit tests using moto or similar library to mock AWS services
 - [ ] Lint and prettier configurations
 - [x] Dockerise the application
 - [x] Created Readme file
